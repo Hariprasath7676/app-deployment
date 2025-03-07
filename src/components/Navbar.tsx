@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import logo from './images/Nilavan-logo New 1.png'
+import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,6 +23,17 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
+  const navigate = useNavigate();
+
+  const handleScroll = (id) => {
+    navigate("/"); // Ensure you're on the correct page
+    setTimeout(() => {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100); // Timeout ensures DOM is loaded before scrolling
+  };
 
   return (
     <header
@@ -58,33 +71,24 @@ const Navbar = () => {
 
         {/* Desktop menu */}
         <nav className="hidden md:flex items-center space-x-12">
-          <Link 
-            to="/about" 
-            className="text-brand-textPrimary hover:text-primary transition-colors duration-300 text-base"
-          >
-            About Us
-          </Link>
-          <Link 
-            to="/projects" 
-            className="text-brand-textPrimary hover:text-primary transition-colors duration-300 text-base"
-          >
-            Current Projects
-          </Link>
-          <Link 
-            to="/contact" 
-            className="text-brand-textPrimary hover:text-primary transition-colors duration-300 text-base"
-          >
-            Contact Us
-          </Link>
+        <button onClick={() => handleScroll("about")} className="text-brand-textPrimary hover:text-primary transition-colors duration-300 text-base">
+        About Us
+      </button>
+      <button onClick={() => handleScroll("projects")} className="text-brand-textPrimary hover:text-primary transition-colors duration-300 text-base">
+        Current Projects
+      </button>
+      <button onClick={() => handleScroll("contact")} className="text-brand-textPrimary hover:text-primary transition-colors duration-300 text-base">
+        Contact Us
+      </button>
         </nav>
 
         <div className="hidden md:flex">
           <a 
             href="tel:+1234567890" 
-            className="bg-primary text-white px-5 py-2.5 flex items-center gap-2 transition-all duration-300 hover:bg-primary/90"
+            className="bg-primary text-white px-9 py-2.5 flex items-center gap-2 transition-all duration-300 hover:bg-primary/90 "
           >
-            <Phone size={18} />
-            <span className="font-medium">CALL US</span>
+            <Phone size={18} fill='currentColor'/>
+            <span className="font-light">CALL US</span>
           </a>
         </div>
 
@@ -107,7 +111,16 @@ const Navbar = () => {
         } bg-white/95 backdrop-blur-md`}
       >
         <div className="container mx-auto px-6 py-4 flex flex-col space-y-4">
-          <Link 
+        <button onClick={() => handleScroll("about")} className="text-brand-textPrimary hover:text-primary py-2 transition-color">
+        About Us
+      </button>
+      <button onClick={() => handleScroll("projects")} className="text-brand-textPrimary hover:text-primary py-2 transition-color">
+        Current Projects
+      </button>
+      <button onClick={() => handleScroll("contact")} className="text-brand-textPrimary hover:text-primary py-2 transition-color">
+        Contact Us
+      </button>
+          {/* <Link 
             to="/about" 
             className="text-brand-textPrimary hover:text-primary py-2 transition-colors"
             onClick={() => setMobileMenuOpen(false)}
@@ -127,15 +140,14 @@ const Navbar = () => {
             onClick={() => setMobileMenuOpen(false)}
           >
             Contact Us
-          </Link>
-          <a 
-            href="tel:+1234567890" 
-            className="bg-primary text-white px-4 py-2 inline-flex items-center gap-2 w-fit"
-            onClick={() => setMobileMenuOpen(false)}
+          </Link> */}
+          <button
+            className="bg-primary text-white font-light px-4 py-2 inline-flex items-center gap-2 w-fit m-auto mt-4"
+            onClick={() => handleScroll("contact")}
           >
-            <Phone size={16} />
-            <span>CALL US</span>
-          </a>
+            <Phone size={16} fill='currentColor' />
+            <span className='font-light'>CALL US</span>
+          </button>
         </div>
       </div>
     </header>

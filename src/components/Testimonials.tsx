@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from "lucide-react"
-
+import profile from './images/testimonial.png'
 interface Testimonial {
   id: number
   name: string
@@ -19,7 +19,7 @@ export default function TestimonialSection() {
       id: 1,
       name: "Arun",
       location: "Coimbatore",
-      image: "/placeholder.svg?height=100&width=100",
+      image: profile,
       rating: 5,
       testimonial:
         "Nilavan Realtors made buying our dream villa seamless. The team guided us through every step, and we got the best deal!",
@@ -28,7 +28,7 @@ export default function TestimonialSection() {
       id: 2,
       name: "Karthik S",
       location: "Investor",
-      image: "/placeholder.svg?height=100&width=100",
+      image: profile,
       rating: 5,
       testimonial:
         "Highly professional and transparent. They helped me find the perfect plot with all legal clearances.",
@@ -37,7 +37,7 @@ export default function TestimonialSection() {
       id: 3,
       name: "Divya R",
       location: "Homebuyer",
-      image: "/placeholder.svg?height=100&width=100",
+      image: profile,
       rating: 5,
       testimonial: "The best real estate service in Coimbatore! Smooth process, great prices, and trustworthy advice.",
     },
@@ -45,7 +45,7 @@ export default function TestimonialSection() {
       id: 4,
       name: "Rajesh K",
       location: "Property Owner",
-      image: "/placeholder.svg?height=100&width=100",
+      image: profile,
       rating: 5,
       testimonial: "Excellent service! They helped me sell my property at the best market value with minimal hassle.",
     },
@@ -53,7 +53,7 @@ export default function TestimonialSection() {
       id: 5,
       name: "Priya M",
       location: "First-time Buyer",
-      image: "/placeholder.svg?height=100&width=100",
+      image: profile,
       rating: 5,
       testimonial:
         "As a first-time buyer, I was nervous about the process. Nilavan Realtors made it simple and stress-free!",
@@ -137,13 +137,13 @@ export default function TestimonialSection() {
               return (
                 <div
                   key={testimonial.id}
-                  className={`transition-all duration-300 flex flex-col items-center ${
+                  className={` flex flex-col items-center ${
                     isActive ? "w-full md:w-1/3 opacity-100 scale-100" : "w-0 md:w-1/4 opacity-50 scale-90"
                   }`}
                 >
                   <div className={`flex flex-col items-center ${!isActive && "hidden md:flex"}`}>
                     <div className="relative w-24 h-24 mb-3 overflow-hidden rounded-full border-4 border-white shadow-md">
-                     <img src="" alt="" />
+                     <img src={testimonial.image} alt="" />
                     </div>
                     <h3 className="text-xl font-semibold">{testimonial.name}</h3>
                     <p className="text-gray-600 mb-4">{testimonial.location}</p>

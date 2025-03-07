@@ -11,25 +11,25 @@ import img4 from './images/whychooseus4.png'
 
 const features = [
   {
-    icon: <img src={img1} alt="" />,
+    icon: <img src={img1} alt="" width="80px" />,
     title: "Your Trusted Partner in Coimbatore's Real Estate Market",
     description: "We are dedicated to providing you with the best real estate experience.",
     buttonText: "LEARN MORE",
   },
   {
-    icon: <img src={img2} alt="" />,
+    icon: <img src={img2} alt="" width="80px" />,
     title: "All Our Properties Are 100% Verified for Your Peace of Mind",
     description: "Rest assured, every property comes with clear titles and approvals.",
     buttonText: "DISCOVER NOW",
   },
   {
-    icon:<img src={img3} alt="" />,
+    icon:<img src={img3} alt="" width="80px" />,
     title: "Experience a Hassle-Free Buying Process with Our Expert Guidance",
     description: "We simplify the buying journey, making it smooth and stress-free.",
     buttonText: "START NOW",
   },
   {
-    icon: <img src={img4} alt="" />,
+    icon: <img src={img4} alt="" width="80px" />,
     title: "Get the Best Deals & Price Guarantee on Every Property",
     description: "We offer competitive prices and exclusive deals to ensure you get the best value for your investment.",
     buttonText: "EXPLORE NOW",
@@ -48,21 +48,21 @@ export default function WhyChooseSection() {
           {features.map((feature, index) => (
             <Card 
               key={index} 
-              className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white shadow-xl hover:shadow-xl transition-shadow duration-300"
             >
-              <CardContent className="p-8 flex flex-col items-center text-center">
+              <CardContent className="p-8 flex flex-col items-center text-center max-w-lg m-auto">
                 <div className="mb-6">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-playfair font-semibold text-text mb-4">
+                <h3 className="text-xl font-playfair font-semibold text-text mb-4 sm:!leading-[33px] sm:tracking-wide">
                   {feature.title}
                 </h3>
-                <p className="text-text/70 mb-6">
+                <p className="text-text/70 mb-6 text-lg">
                   {feature.description}
                 </p>
                 <Button 
                   variant="default" 
-                  className="bg-primary hover:bg-[#294666]/90 text-white"
+                  className="bg-primary hover:bg-[#294666]/90 text-white "
                 >
                   {feature.buttonText}
                 </Button>

@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
+import mail from './images/mail.png'
+import call from './images/call.png'
+import location from './images/location.png'
 const ContactSection = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -34,14 +36,14 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-brand-bgPrimary py-16 md:py-24 reveal">
+    <section className="bg-brand-bgPrimary py-16 md:py-24 reveal mx-w-[1400px] " id="contact">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Side - Contact Info */}
           <div className="space-y-8">
             <div>
               <p className="text-base font-medium mb-4">Contact Us</p>
-              <h2 className="text-4xl md:text-5xl font-playfair text-primary mb-6">Get in Touch</h2>
+              <h2 className="text-4xl md:text-5xl font-playfair text-black mb-6">Get in Touch</h2>
               <p className="text-gray-700 mb-2">
                 Have questions? We're here to help! Fill out the form below,
               </p>
@@ -53,7 +55,7 @@ const ContactSection = () => {
             <div className="space-y-8">
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
-                  <Mail className="text-gray-700" size={20} />
+                  <img src={mail} alt="" />
                 </div>
                 <div>
                   <p className="font-medium">Reach us anytime</p>
@@ -67,7 +69,7 @@ const ContactSection = () => {
 
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
-                  <Phone className="text-gray-700" size={20} />
+                <img src={call} alt="" />
                 </div>
                 <div>
                   <p className="font-medium">Call us for assistance</p>
@@ -81,7 +83,7 @@ const ContactSection = () => {
 
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
-                  <MapPin className="text-gray-700" size={20} />
+                <img src={location} alt="" />
                 </div>
                 <div>
                   <p className="font-medium">Nilavan Real Estate. malumichampatti, Coimbatore, TN 641001</p>

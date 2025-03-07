@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
 import logo from './images/Nilavan-logo New 1.png';
+import leadtapLogo from './images/Laedtap Favicon.png'
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 py-8 px-4 md:px-8">
-      <div className="container mx-auto max-w-7xl">
+    <footer className=" bg-brand-bgPrimary py-8 px-4 md:px-8">
+      <div className="container mx-auto max-w-8xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Logo and Description */}
           <div className="space-y-4">
             <div className="flex flex-col items-start">
               <div className="h-16 w-40 relative">
-                <img src={logo} alt="" />
+                <img src={logo} alt=""  width="100px"/>
               </div>
             </div>
             <p className="text-gray-700 max-w-md">
@@ -46,7 +47,7 @@ export default function Footer() {
           </div>
 
           {/* Address */}
-          <div>
+          <div className='flex flex-col justify-items-end sm:ml-[40%]'>
             <h3 className="text-xl font-semibold mb-4">Address:</h3>
             <address className="not-italic text-gray-700">
               Nilavan Real Estate,
@@ -67,8 +68,8 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
           <p>© 2025 leadtap.ai. All rights reserved.</p>
           <div className="flex items-center mt-2 md:mt-0">
-            <span>Site by leadtap.ai</span>
-            <span className="ml-1 text-orange-500">🔥</span>
+            <span>Site by <a href="https://www.leadtap.ai/">leadtap.ai</a></span>
+            <span className="ml-1 text-orange-500"><img src={leadtapLogo} alt="" width="20px" /></span>
           </div>
         </div>
       </div>

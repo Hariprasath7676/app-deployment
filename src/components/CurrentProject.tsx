@@ -30,8 +30,8 @@ const ProjectCard = ({ project }: { project: ProjectProps }) => {
         />
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-playfair font-medium text-primary">
-          {project.title} <span className="text-gray-700">– {project.subtitle}</span>
+        <h3 className="text-2xl sm:!leading-[39px] sm:tracking-wide font-playfair font-medium text-black pb-4">
+          {project.title} <span className="">– {project.subtitle}</span>
         </h3>
         
         <div className="mt-4 space-y-3">
@@ -128,13 +128,13 @@ const CurrentProjectsSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white">
+    <section ref={sectionRef} id="projects" className="py-24 ">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16 reveal-up">
-          <h2 className="text-3xl md:text-4xl font-playfair font-medium text-primary mb-6">
+          <h2 className="text-3xl md:text-4xl font-playfair font-medium text-black sm:!leading-[48px] sm:tracking-wide  mb-6">
             Current Projects – Explore Our Ongoing Developments
           </h2>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-lg sm:!leading-[33px]">
             Discover our latest real estate projects in Coimbatore, offering premium plots,
             villas, farmhouses, and apartments in prime locations. Secure your dream property
             with clear titles and hassle-free transactions.

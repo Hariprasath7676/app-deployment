@@ -2,10 +2,22 @@
 import { useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import heroimg from './images/5.png'
+import { useNavigate } from "react-router-dom";
+
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const handleScroll = (id) => {
+    navigate("/"); // Ensure you're on the correct page
+    setTimeout(() => {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100); // Timeout ensures DOM is loaded before scrolling
+  };
 
   useEffect(() => {
     // Fade in animation on load
@@ -35,7 +47,7 @@ const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        {/* <div className="absolute inset-0 bg-black/50 z-10"></div> */}
         <img
           src={heroimg}
           alt="Elegant interior"
@@ -44,13 +56,13 @@ const Hero = () => {
       </div>
       
       <div className="container mx-auto px-6 relative z-20 mt-16">
-        <div className="max-w-[750px] mx-auto text-center">
+        <div className="sm:max-w-[60%] mx-auto text-center">
           <div ref={textRef} className="reveal-up space-y-10 ">
             {/* <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 mb-2">
               <span className="h-0.5 w-5 bg-secondary"></span>
               <span className="text-white font-light tracking-wider text-sm">PREMIUM INTERIORS</span>
             </div> */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-medium text-white leading-tight ">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-playfair font-medium text-white sm:!leading-[78px] sm:tracking-wide ">
               Find Your Dream Property in Coimbatore
             </h1>
             <p className="text-white/90 mx-auto md:text-lg max-w-6xl font-light ">
@@ -58,13 +70,13 @@ const Hero = () => {
           </div>
           
           <div ref={buttonRef} className="reveal mt-10">
-            <a 
-              href="/projects" 
-              className="inline-flex items-center gap-2 bg-primary py-3 px-6 text-white group transition-all duration-300 hover:bg-secondary/90"
+            <button
+            onClick={() => handleScroll("contact")}
+              className="inline-flex items-center gap-2 bg-primary py-3 px-9 text-white group transition-all duration-300 hover:bg-secondary/90"
             >
               <span className="font-light">GET IN TOUCH</span>
               {/* <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" /> */}
-            </a>
+            </button>
           </div>
         </div>
       </div>

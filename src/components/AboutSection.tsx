@@ -27,31 +27,31 @@ const PartnershipSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-brand-bgPrimary">
+    <section ref={sectionRef}  id="about" className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto gap-12">
           {/* Left: Image */}
-          <div className="w-full lg:w-1/2 flex justify-center">
+          <div className="w-full lg:w-1/2 flex justify-center sm:left-[5%] relative">
             <img
               src={aboutimg}
               alt="Elegant interior staircase"
-              className="w-full max-w-[600px] object-cover"
+              className="w-full max-w-[600px] object-cover "
             />
           </div>
 
           {/* Right: Blue Background Container */}
-          <div></div>
-          <div className="w-full lg:w-1/2 bg-primary   bluebg relative -mr-8">
+          
+          <div className="w-full lg:w-1/2 bg-primary -mt-[50%] sm:mt-0 sm:-left-[5%]  bluebg relative -mr-8">
             {/* Right: Content */}
             <div
               ref={contentRef}
               className="bg-white p-8 md:p-12 shadow-lg mt-8 -ml-8 -mb-8 mr-8"
             >
-              <h2 className="text-3xl md:text-4xl font-playfair font-medium text-primary mb-6 leading-tight">
+              <h2 className="text-3xl md:text-4xl font-playfair font-medium text-black mb-6 c">
                 Your Trusted Partner<br />in Real Estate
               </h2>
 
-              <p className="text-gray-700 mb-8">
+              <p className="text-gray-700 mb-8 text-lg sm:!leading-[33px] sm:tracking-wide">
                 Nilavan Realtors is a trusted real estate firm in Coimbatore, offering
                 premium plots, villas, apartments, and farmhouses. With years of experience
                 and market expertise, we ensure 100% verified properties, seamless
@@ -60,7 +60,7 @@ const PartnershipSection = () => {
 
               <a
                 href="/projects"
-                className="inline-flex items-center gap-2 bg-primary py-3 px-6 text-white group transition-all duration-300 hover:bg-primary/90"
+                className="inline-flex items-center gap-2 bg-primary py-3 sm:tracking-wide  text-white group transition-all duration-300 hover:bg-primary/90 px-9"
               >
                 <span className="font-light">LEARN MORE</span>
                 {/* <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" /> */}

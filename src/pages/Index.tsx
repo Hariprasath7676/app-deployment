@@ -9,6 +9,8 @@ import WhyChooseSection from '@/components/WhyChooseUs';
 import TestimonialSection from '@/components/Testimonials';
 import FAQSection from '@/components/Faq';
 import ContactSection from '@/components/contact';
+import Map from '@/components/map';
+
 const Index = () => {
   useEffect(() => {
     // Smooth scroll animation
@@ -43,6 +45,7 @@ const Index = () => {
       <TestimonialSection/>
       <FAQSection/>
       <ContactSection/>
+      <Map/>
       <Footer/>
     </main>
   );
