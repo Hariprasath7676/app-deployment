@@ -38,7 +38,7 @@ export default function FAQSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left Column */}
           <div>
-            <h2 className="text-4xl font-bold text-text mb-6">FAQs</h2>
+            <h2 className="text-4xl font-playfair text-text mb-6">FAQs</h2>
             <p className="text-lg text-text/70 mb-8">
               Find quick answers to common queries about our properties, legal verification, 
               home loan assistance, and site visits. We ensure a smooth and transparent 
@@ -53,12 +53,12 @@ export default function FAQSection() {
 
           {/* Right Column */}
           <div>
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="single" collapsible className="space-y-3">
               {faqs.map((faq, index) => (
                 <AccordionItem 
                   key={index} 
                   value={`item-${index}`}
-                  className="border border-border rounded-lg px-6"
+                  className="border-t border-b-0 border-t-black px-6 pt-3"
                 >
                   <AccordionTrigger className="text-lg font-semibold text-text hover:no-underline">
                     {faq.question}

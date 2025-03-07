@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import logo from './images/Nilavan-logo New 1.png';
 export default function Footer() {
   return (
     <footer className="bg-gray-100 py-8 px-4 md:px-8">
@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex flex-col items-start">
               <div className="h-16 w-40 relative">
-                <img src="" alt="" />
+                <img src={logo} alt="" />
               </div>
             </div>
             <p className="text-gray-700 max-w-md">

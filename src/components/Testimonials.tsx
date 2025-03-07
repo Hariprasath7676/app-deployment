@@ -107,9 +107,9 @@ export default function TestimonialSection() {
   }
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 ">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-16">Client Review</h2>
+        <h2 className="text-4xl font-playfair text-center mb-16">Client Review</h2>
 
         <div className="relative">
           {/* Navigation Buttons */}
@@ -149,7 +149,7 @@ export default function TestimonialSection() {
                     <p className="text-gray-600 mb-4">{testimonial.location}</p>
 
                     {isActive && (
-                      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                      <div className="bg-white p-6  shadow-md w-full max-w-md">
                         <div className="flex mb-3 justify-center">{renderStars(testimonial.rating)}</div>
                         <p className="text-center italic">"{testimonial.testimonial}"</p>
                       </div>

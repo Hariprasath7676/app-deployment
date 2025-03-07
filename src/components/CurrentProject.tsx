@@ -1,6 +1,13 @@
 
 import { MapPin, Ruler, Clock, Check, ArrowRight } from 'lucide-react';
 import { useRef, useEffect } from 'react';
+import img1 from './images/project1.png'
+import img2 from './images/project2.png'
+import img3 from './images/project3.png'
+import icon1 from './images/icon1.png'
+import icon2 from './images/icon2.png'
+import icon3 from './images/icon3.png'
+import icon4 from './images/icon4.png'
 
 type ProjectProps = {
   title: string;
@@ -29,22 +36,22 @@ const ProjectCard = ({ project }: { project: ProjectProps }) => {
         
         <div className="mt-4 space-y-3">
           <div className="flex items-center gap-2">
-            <MapPin size={18} className="text-secondary" />
+            <img src={icon1} alt="" width="30"/>
             <span className="text-sm">{project.location}</span>
           </div>
           
           <div className="flex items-center gap-2">
-            <Ruler size={18} className="text-secondary" />
+          <img src={icon2} alt="" width="30" />
             <span className="text-sm">{project.area}</span>
           </div>
           
           <div className="flex items-center gap-2">
-            <Clock size={18} className="text-secondary" />
+          <img src={icon3} alt="" width="30"/>
             <span className="text-sm">{project.distance}</span>
           </div>
           
           <div className="flex items-start gap-2">
-            <Check size={18} className="text-secondary mt-0.5" />
+          <img src={icon4} alt="" width="30"/>
             <span className="text-sm">{project.amenities}</span>
           </div>
         </div>
@@ -52,10 +59,9 @@ const ProjectCard = ({ project }: { project: ProjectProps }) => {
         <div className="mt-6">
           <a 
             href="/contact" 
-            className="inline-flex items-center gap-2 border border-primary py-2 px-8 text-primary font-medium group transition-all duration-300 hover:bg-primary hover:text-white"
+            className="inline-flex items-center gap-2 border border-secondary py-2 px-8 text-blac font-light group transition-all duration-300 hover:bg-primary hover:text-white"
           >
             ENQUIRE NOW
-            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
       </div>
@@ -99,7 +105,7 @@ const CurrentProjectsSection = () => {
       area: "1200 – 2400 Sq. Ft",
       distance: "5 mins to IT Park, 10 mins to Airport",
       amenities: "Gated Community, 24/7 Security, Landscaped Gardens",
-      image: "/lovable-uploads/b59d90e5-fc6a-42a3-9e70-ec7a7e0d7ebc.png"
+      image: img1
     },
     {
       title: "Nilavan Grand Villas",
@@ -108,7 +114,7 @@ const CurrentProjectsSection = () => {
       area: "1800 – 3000 Sq. Ft",
       distance: "10 mins to Marudhamalai Temple",
       amenities: "Private Garden, Covered Parking, Clubhouse",
-      image: "/lovable-uploads/d36cbed0-2e28-425a-b68b-60eaece7ee21.png"
+      image: img2
     },
     {
       title: "Farm Bliss",
@@ -117,7 +123,7 @@ const CurrentProjectsSection = () => {
       area: "½ Acre – 2 Acres",
       distance: "20 mins to Aliyar Dam, 30 mins to Coimbatore City",
       amenities: "Organic Farming Spaces, Private Cottages, Water Supply",
-      image: "/lovable-uploads/41ec6083-6aec-431a-8b94-abd6f42e0721.png"
+      image: img3
     }
   ];
 
