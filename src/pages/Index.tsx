@@ -2,8 +2,13 @@
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import AboutSection from '@/components/AboutSection';
-
+import PartnershipSection from '@/components/AboutSection';
+import CurrentProjectsSection from '@/components/CurrentProject';
+import Footer from '@/components/footer';
+import WhyChooseSection from '@/components/WhyChooseUs'; 
+import TestimonialSection from '@/components/Testimonials';
+import FAQSection from '@/components/Faq';
+import ContactSection from '@/components/contact';
 const Index = () => {
   useEffect(() => {
     // Smooth scroll animation
@@ -32,7 +37,13 @@ const Index = () => {
     <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <AboutSection />
+      <PartnershipSection />
+      <CurrentProjectsSection/>
+      <WhyChooseSection/>
+      <TestimonialSection/>
+      <FAQSection/>
+      <ContactSection/>
+      <Footer/>
     </main>
   );
 };

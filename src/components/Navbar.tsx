@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
+import logo from './images/Nilavan-logo New 1.png'
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -52,7 +52,7 @@ const Navbar = () => {
                 }
               }}
             />
-            <span className="hidden">NILAVAN</span>
+            <span className="hidden"><img src={logo} alt="" width="90"  /></span>
           </Link>
         </div>
 
