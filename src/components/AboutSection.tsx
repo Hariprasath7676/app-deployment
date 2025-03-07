@@ -24,12 +24,13 @@ const PartnershipSection = () => {
 
           {/* Right: Blue Background Container */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="w-full lg:w-1/2 bg-primary -mt-[50%] sm:mt-0 sm:-left-[5%] bluebg relative -mr-8"
-          >
+  initial={{ opacity: 0, x: 50 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8, delay: 0.2 }}
+  viewport={{ once: true }}
+  className="w-full lg:w-1/2 bg-primary sm:mt-0 sm:-left-[5%] relative sm:-mr-8 mt-10"
+>
+
             {/* Right: Content */}
             <div className="bg-white p-8 md:p-12 shadow-lg mt-8 -ml-8 -mb-8 mr-8">
               <h2 className="text-3xl md:text-4xl font-playfair font-medium text-black mb-6">

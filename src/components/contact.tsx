@@ -57,7 +57,7 @@ const ContactSection = () => {
           >
             <div>
               <p className="text-base font-medium mb-4">Contact Us</p>
-              <h2 className="text-4xl md:text-5xl font-playfair text-black mb-6">Get in Touch</h2>
+              <h2 className="text-4xl md:text-4xl font-playfair text-black mb-6">Get in Touch</h2>
               <p className="text-gray-700 mb-2">
                 Have questions? We're here to help! Fill out the form below,
               </p>

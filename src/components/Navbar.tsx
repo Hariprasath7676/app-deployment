@@ -44,7 +44,7 @@ const Navbar = () => {
           : 'bg-white py-5'
       )}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
+      <div className="w-[80%] sm:w-[100%] mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center">
           <Link 
             to="/" 
@@ -110,7 +110,7 @@ const Navbar = () => {
           mobileMenuOpen ? 'max-h-60 border-b' : 'max-h-0'
         } bg-white/95 backdrop-blur-md`}
       >
-        <div className="container mx-auto px-6 py-4 flex flex-col space-y-4">
+        <div className="!w-[80%] mx-auto py-4 flex flex-col space-y-4">
         <button onClick={() => handleScroll("about")} className="text-brand-textPrimary hover:text-primary py-2 transition-color">
         About Us
       </button>
