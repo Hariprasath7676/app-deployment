@@ -1,10 +1,10 @@
-
-import { useState } from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { useToast } from '@/hooks/use-toast';
-import mail from './images/mail.png'
-import call from './images/call.png'
-import location from './images/location.png'
+import mail from './images/mail.png';
+import call from './images/call.png';
+import location from './images/location.png';
+
 const ContactSection = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -15,6 +15,9 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -23,8 +26,7 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
+
     setTimeout(() => {
       toast({
         title: "Message Sent",
@@ -36,11 +38,23 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-brand-bgPrimary py-16 md:py-24 reveal mx-w-[1400px] " id="contact">
+    <motion.section
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="bg-brand-bgPrimary py-16 md:py-24 reveal mx-w-[1400px]"
+      id="contact"
+    >
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Side - Contact Info */}
-          <div className="space-y-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }} 
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
+          >
             <div>
               <p className="text-base font-medium mb-4">Contact Us</p>
               <h2 className="text-4xl md:text-5xl font-playfair text-black mb-6">Get in Touch</h2>
@@ -53,88 +67,63 @@ const ContactSection = () => {
             </div>
 
             <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
-                  <img src={mail} alt="" />
-                </div>
-                <div>
-                  <p className="font-medium">Reach us anytime</p>
-                  <a href="mailto:info@nilavanrealtors.com" className="text-gray-700 hover:text-primary">
-                    info@nilavanrealtors.com
-                  </a>
-                </div>
-              </div>
-              
-              <div className="w-full h-px bg-gray-300" />
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
-                <img src={call} alt="" />
-                </div>
-                <div>
-                  <p className="font-medium">Call us for assistance</p>
-                  <a href="tel:+919876543210" className="text-gray-700 hover:text-primary">
-                    +91 98765 43210
-                  </a>
-                </div>
-              </div>
-              
-              <div className="w-full h-px bg-gray-300" />
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
-                <img src={location} alt="" />
-                </div>
-                <div>
-                  <p className="font-medium">Nilavan Real Estate. malumichampatti, Coimbatore, TN 641001</p>
-                  <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-primary">
-                    Get Directions
-                  </a>
-                </div>
-              </div>
+              {[{ img: mail, text: "Reach us anytime", link: "mailto:info@nilavanrealtors.com" },
+                { img: call, text: "Call us for assistance", link: "tel:+919876543210" },
+                { img: location, text: "Nilavan Real Estate. Malumichampatti, Coimbatore, TN 641001", link: "https://maps.google.com" }]
+                .map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
+                    className="flex items-start space-x-4"
+                  >
+                    <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                      <img src={item.img} alt="" />
+                    </div>
+                    <div>
+                      <p className="font-medium">{item.text}</p>
+                      <a href={item.link} className="text-gray-700 hover:text-primary">
+                        {item.link.includes('maps') ? "Get Directions" : item.link.replace('mailto:', '').replace('tel:', '')}
+                      </a>
+                    </div>
+                  </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side - Contact Form */}
-          <div className="bg-primary p-8 md:p-12">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }} 
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="bg-primary p-8 md:p-12"
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your Name"
-                  required
-                  className="w-full bg-primary border border-gray-400 text-white p-4 focus:outline-none focus:border-secondary placeholder-gray-300"
-                />
-              </div>
+              {["name", "email", "phone"].map((field, index) => (
+                <motion.div
+                  key={field}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                >
+                  <input
+                    type={field === "email" ? "email" : field === "phone" ? "tel" : "text"}
+                    name={field}
+                    value={formData[field]}
+                    onChange={handleChange}
+                    placeholder={`Your ${field.charAt(0).toUpperCase() + field.slice(1)}`}
+                    required
+                    className="w-full bg-primary border border-gray-400 text-white p-4 focus:outline-none focus:border-secondary placeholder-gray-300"
+                  />
+                </motion.div>
+              ))}
               
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter Your Email"
-                  required
-                  className="w-full bg-primary border border-gray-400 text-white p-4 focus:outline-none focus:border-secondary placeholder-gray-300"
-                />
-              </div>
-              
-              <div>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Phone Number"
-                  required
-                  className="w-full bg-primary border border-gray-400 text-white p-4 focus:outline-none focus:border-secondary placeholder-gray-300"
-                />
-              </div>
-              
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
                 <textarea
                   name="message"
                   value={formData.message}
@@ -144,20 +133,23 @@ const ContactSection = () => {
                   required
                   className="w-full bg-primary border border-gray-400 text-white p-4 focus:outline-none focus:border-secondary placeholder-gray-300"
                 />
-              </div>
-              
-              <button
+              </motion.div>
+
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.8 }}
                 className="w-full bg-secondary text-white py-4 font-medium transition duration-300 hover:bg-secondary/90 disabled:opacity-70"
               >
                 {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

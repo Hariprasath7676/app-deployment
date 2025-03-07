@@ -2,12 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Handshake, Check as HomeCheck, FileCheck, Award } from "lucide-react"
+import { motion } from "framer-motion"
 import img1 from './images/whychooseus1.png'
 import img2 from './images/whychooseus2.png'
 import img3 from './images/whychooseus3.png'
 import img4 from './images/whychooseus4.png'
-
 
 const features = [
   {
@@ -23,7 +22,7 @@ const features = [
     buttonText: "DISCOVER NOW",
   },
   {
-    icon:<img src={img3} alt="" width="80px" />,
+    icon: <img src={img3} alt="" width="80px" />,
     title: "Experience a Hassle-Free Buying Process with Our Expert Guidance",
     description: "We simplify the buying journey, making it smooth and stress-free.",
     buttonText: "START NOW",
@@ -46,28 +45,30 @@ export default function WhyChooseSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className="bg-white shadow-xl hover:shadow-xl transition-shadow duration-300"
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
             >
-              <CardContent className="p-8 flex flex-col items-center text-center max-w-lg m-auto">
-                <div className="mb-6">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-playfair font-semibold text-text mb-4 sm:!leading-[33px] sm:tracking-wide">
-                  {feature.title}
-                </h3>
-                <p className="text-text/70 mb-6 text-lg">
-                  {feature.description}
-                </p>
-                <Button 
-                  variant="default" 
-                  className="bg-primary hover:bg-[#294666]/90 text-white "
-                >
-                  {feature.buttonText}
-                </Button>
-              </CardContent>
-            </Card>
+              <Card className="bg-white shadow-xl hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="p-8 flex flex-col items-center text-center max-w-lg m-auto">
+                  <div className="mb-6">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-playfair font-semibold text-text mb-4 sm:!leading-[33px] sm:tracking-wide">
+                    {feature.title}
+                  </h3>
+                  <p className="text-text/70 mb-6 text-lg">
+                    {feature.description}
+                  </p>
+                  <Button variant="default" className="bg-primary hover:bg-[#294666]/90 text-white">
+                    {feature.buttonText}
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>

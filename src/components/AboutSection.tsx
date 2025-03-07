@@ -1,53 +1,38 @@
-import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import aboutimg from "./images/Placeholder Image.png";
 
 const PartnershipSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Animation on scroll
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (contentRef.current) observer.observe(contentRef.current);
-
-    return () => {
-      if (contentRef.current) observer.unobserve(contentRef.current);
-    };
-  }, []);
-
   return (
-    <section ref={sectionRef}  id="about" className="py-24 bg-white">
+    <section id="about" className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto gap-12">
-          {/* Left: Image */}
-          <div className="w-full lg:w-1/2 flex justify-center sm:left-[5%] relative">
+          {/* Left: Image with Animation */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="w-full lg:w-1/2 flex justify-center sm:left-[5%] relative"
+          >
             <img
               src={aboutimg}
               alt="Elegant interior staircase"
-              className="w-full max-w-[600px] object-cover "
+              className="w-full max-w-[600px] object-cover"
             />
-          </div>
+          </motion.div>
 
           {/* Right: Blue Background Container */}
-          
-          <div className="w-full lg:w-1/2 bg-primary -mt-[50%] sm:mt-0 sm:-left-[5%]  bluebg relative -mr-8">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="w-full lg:w-1/2 bg-primary -mt-[50%] sm:mt-0 sm:-left-[5%] bluebg relative -mr-8"
+          >
             {/* Right: Content */}
-            <div
-              ref={contentRef}
-              className="bg-white p-8 md:p-12 shadow-lg mt-8 -ml-8 -mb-8 mr-8"
-            >
-              <h2 className="text-3xl md:text-4xl font-playfair font-medium text-black mb-6 c">
+            <div className="bg-white p-8 md:p-12 shadow-lg mt-8 -ml-8 -mb-8 mr-8">
+              <h2 className="text-3xl md:text-4xl font-playfair font-medium text-black mb-6">
                 Your Trusted Partner<br />in Real Estate
               </h2>
 
@@ -58,15 +43,17 @@ const PartnershipSection = () => {
                 transactions, and the best deals for our clients.
               </p>
 
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href="/projects"
-                className="inline-flex items-center gap-2 bg-primary py-3 sm:tracking-wide  text-white group transition-all duration-300 hover:bg-primary/90 px-9"
+                className="inline-flex items-center gap-2 bg-primary py-3 sm:tracking-wide text-white group transition-all duration-300 hover:bg-primary/90 px-9"
               >
                 <span className="font-light">LEARN MORE</span>
-                {/* <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" /> */}
-              </a>
+                <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

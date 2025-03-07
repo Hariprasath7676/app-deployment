@@ -1,27 +1,27 @@
+import { motion } from 'framer-motion';
+import img1 from './images/project1.png';
+import img2 from './images/project2.png';
+import img3 from './images/project3.png';
+import icon1 from './images/icon1.png';
+import icon2 from './images/icon2.png';
+import icon3 from './images/icon3.png';
+import icon4 from './images/icon4.png';
 
-import { MapPin, Ruler, Clock, Check, ArrowRight } from 'lucide-react';
-import { useRef, useEffect } from 'react';
-import img1 from './images/project1.png'
-import img2 from './images/project2.png'
-import img3 from './images/project3.png'
-import icon1 from './images/icon1.png'
-import icon2 from './images/icon2.png'
-import icon3 from './images/icon3.png'
-import icon4 from './images/icon4.png'
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i) => ({ opacity: 1, y: 0, transition: { delay: i * 0.2 } })
+};
 
-type ProjectProps = {
-  title: string;
-  subtitle: string;
-  location: string;
-  area: string;
-  distance: string;
-  amenities: string;
-  image: string;
-}
-
-const ProjectCard = ({ project }: { project: ProjectProps }) => {
+const ProjectCard = ({ project, index }) => {
   return (
-    <div className="bg-white shadow-md reveal-up">
+    <motion.div 
+      variants={fadeUpVariant} 
+      initial="hidden" 
+      whileInView="visible" 
+      viewport={{ once: true }} 
+      custom={index} 
+      className="bg-white shadow-md overflow-hidden "
+    >
       <div className="h-60 overflow-hidden">
         <img 
           src={project.image} 
@@ -30,76 +30,44 @@ const ProjectCard = ({ project }: { project: ProjectProps }) => {
         />
       </div>
       <div className="p-6">
-        <h3 className="text-2xl sm:!leading-[39px] sm:tracking-wide font-playfair font-medium text-black pb-4">
-          {project.title} <span className="">– {project.subtitle}</span>
+        <h3 className="text-2xl font-playfair font-medium text-black pb-4">
+          {project.title} <span>– {project.subtitle}</span>
         </h3>
-        
         <div className="mt-4 space-y-3">
           <div className="flex items-center gap-2">
-            <img src={icon1} alt="" width="30"/>
+            <img src={icon1} alt="" width="30" />
             <span className="text-sm">{project.location}</span>
           </div>
-          
           <div className="flex items-center gap-2">
-          <img src={icon2} alt="" width="30" />
+            <img src={icon2} alt="" width="30" />
             <span className="text-sm">{project.area}</span>
           </div>
-          
           <div className="flex items-center gap-2">
-          <img src={icon3} alt="" width="30"/>
+            <img src={icon3} alt="" width="30" />
             <span className="text-sm">{project.distance}</span>
           </div>
-          
           <div className="flex items-start gap-2">
-          <img src={icon4} alt="" width="30"/>
+            <img src={icon4} alt="" width="30" />
             <span className="text-sm">{project.amenities}</span>
           </div>
         </div>
-        
         <div className="mt-6">
           <a 
             href="/contact" 
-            className="inline-flex items-center gap-2 border border-secondary py-2 px-8 text-blac font-light group transition-all duration-300 hover:bg-primary hover:text-white"
+            className="inline-flex items-center gap-2 border border-secondary py-2 px-8 text-black font-light transition-all duration-300 hover:bg-primary hover:text-white"
           >
             ENQUIRE NOW
           </a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const CurrentProjectsSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    // Animation on scroll
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const elements = entry.target.querySelectorAll('.reveal-up');
-            elements.forEach((el, index) => {
-              setTimeout(() => {
-                el.classList.add('active');
-              }, 150 * index); // Staggered animation
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
-
   const projects = [
     {
-      title: "Green view Residency",
+      title: "Green View Residency",
       subtitle: "Premium Plots",
       location: "Saravanampatti, Coimbatore",
       area: "1200 – 2400 Sq. Ft",
@@ -128,22 +96,27 @@ const CurrentProjectsSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="projects" className="py-24 ">
+    <section id="projects" className="py-24">
       <div className="container mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16 reveal-up">
-          <h2 className="text-3xl md:text-4xl font-playfair font-medium text-black sm:!leading-[48px] sm:tracking-wide  mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-playfair font-medium text-black mb-6">
             Current Projects – Explore Our Ongoing Developments
           </h2>
-          <p className="text-gray-700 text-lg sm:!leading-[33px]">
+          <p className="text-gray-700 text-lg">
             Discover our latest real estate projects in Coimbatore, offering premium plots,
             villas, farmhouses, and apartments in prime locations. Secure your dream property
             with clear titles and hassle-free transactions.
           </p>
-        </div>
-        
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} />
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       </div>

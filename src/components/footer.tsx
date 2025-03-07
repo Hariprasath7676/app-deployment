@@ -1,7 +1,21 @@
 import { Link } from 'react-router-dom';
 import logo from './images/Nilavan-logo New 1.png';
 import leadtapLogo from './images/Laedtap Favicon.png'
+import { useNavigate } from "react-router-dom";
+
 export default function Footer() {
+  const navigate = useNavigate();
+  
+    const handleScroll = (id) => {
+      navigate("/"); // Ensure you're on the correct page
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100); // Timeout ensures DOM is loaded before scrolling
+    };
+  
   return (
     <footer className=" bg-brand-bgPrimary py-8 px-4 md:px-8">
       <div className="container mx-auto max-w-8xl">
@@ -24,24 +38,24 @@ export default function Footer() {
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/about" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <button onClick={() => handleScroll("about")} className="text-gray-700 hover:text-blue-600 transition-colors">
                   About Us
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/projects" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <button onClick={() => handleScroll("projects")} className="text-gray-700 hover:text-blue-600 transition-colors">
                   Current Projects
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/faq" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <button onClick={() => handleScroll("faq")} className="text-gray-700 hover:text-blue-600 transition-colors">
                   FAQ
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <button onClick={() => handleScroll("contact")} className="text-gray-700 hover:text-blue-600 transition-colors">
                   Contact
-                </Link>
+                </button>
               </li>
             </ul>
           </div>

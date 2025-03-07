@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { motion } from "framer-motion"
 
 const faqs = [
   {
@@ -33,8 +34,14 @@ const faqs = [
 
 export default function FAQSection() {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.section 
+      className="py-20 bg-white"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " id="faq">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left Column */}
           <div>
@@ -72,6 +79,6 @@ export default function FAQSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
