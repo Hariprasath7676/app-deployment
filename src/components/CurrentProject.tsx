@@ -6,6 +6,7 @@ import icon1 from './images/icon1.png';
 import icon2 from './images/icon2.png';
 import icon3 from './images/icon3.png';
 import icon4 from './images/icon4.png';
+import { useNavigate } from "react-router-dom";
 
 const fadeUpVariant = {
   hidden: { opacity: 0, y: 30 },
@@ -13,6 +14,17 @@ const fadeUpVariant = {
 };
 
 const ProjectCard = ({ project, index }) => {
+  const navigate = useNavigate();
+  
+    const handleScroll = (id) => {
+      navigate("/"); // Ensure you're on the correct page
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    };
   return (
     <motion.div 
       variants={fadeUpVariant} 
@@ -52,12 +64,12 @@ const ProjectCard = ({ project, index }) => {
           </div>
         </div>
         <div className="mt-6">
-          <a 
-            href="/contact" 
-            className="inline-flex items-center gap-2 border border-secondary py-2 px-8 text-black font-light transition-all duration-300 hover:bg-primary hover:text-white"
+          <button
+              onClick={() => handleScroll("contact")}
+            className="inline-flex items-center gap-2 border border-secondary py-2 px-8 text-black font-light transition-all duration-300  "
           >
             ENQUIRE NOW
-          </a>
+          </button>
         </div>
       </div>
     </motion.div>

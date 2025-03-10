@@ -38,7 +38,7 @@ const Index = () => {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <Hero />
+      <Hero /> 
       <PartnershipSection />
       <CurrentProjectsSection/>
       <WhyChooseSection/>
@@ -46,7 +46,7 @@ const Index = () => {
       <FAQSection/>
       <ContactSection/>
       <Map/>
-      <Footer/>
+      <Footer/> 
     </main>
   );
 };

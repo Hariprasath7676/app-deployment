@@ -5,11 +5,11 @@ import aboutimg from "./images/Placeholder Image.png";
 const PartnershipSection = () => {
   return (
     <section id="about" className="py-24 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto gap-12">
+      <div className="px-6">
+        <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xla gap-12">
           {/* Left: Image with Animation */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
@@ -24,7 +24,7 @@ const PartnershipSection = () => {
 
           {/* Right: Blue Background Container */}
           <motion.div
-  initial={{ opacity: 0, x: 50 }}
+  initial={{ opacity: 0, x: 10 }}
   whileInView={{ opacity: 1, x: 0 }}
   transition={{ duration: 0.8, delay: 0.2 }}
   viewport={{ once: true }}

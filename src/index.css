@@ -43,7 +43,7 @@
   }
 
   body {
-    @apply bg-brand-bgPrimary text-brand-textPrimary font-poppins;
+    @apply bg-brand-bgPrimary text-brand-textPrimary font-poppins ;
   }
 
   .glass-effect {
