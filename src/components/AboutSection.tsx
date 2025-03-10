@@ -4,8 +4,8 @@ import aboutimg from "./images/Placeholder Image.png";
 
 const PartnershipSection = () => {
   return (
-    <section id="about" className="py-24 bg-white">
-      <div className="px-6">
+    <section id="about" className="py-24 bg-white ">
+      <div className="px-6 max-w-[1400px] m-auto">
         <div className="flex flex-col lg:flex-row items-center justify-between max-w-6xla gap-12">
           {/* Left: Image with Animation */}
           <motion.div
