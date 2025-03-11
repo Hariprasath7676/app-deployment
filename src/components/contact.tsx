@@ -17,6 +17,7 @@ const ContactSection = () => {
 
   const ref = useRef(null);
   const isInView = useInView(ref);
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -27,10 +28,10 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
   
-    const sendGridAPI = "https://nilavan-email.vercel.app/send-email";
-    const token = process.env.NEXT_PUBLIC_BEARER_TOKEN;
+    const sendGridAPI = import.meta.env.VITE_NEXT_PUBLIC_API_URL;
+    const token = import.meta.env.VITE_BEARER_TOKEN;
     console.log("Token:", token);
-    console.log("All environment variables:", process.env);
+    console.log("All environment variables:", import.meta.env);
 
     try {
       const response = await fetch(sendGridAPI, {
