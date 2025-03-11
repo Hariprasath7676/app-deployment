@@ -23,20 +23,39 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    setTimeout(() => {
-      toast({
-        title: "Message Sent",
-        description: "We'll get back to you as soon as possible!",
+  
+    const sendGridAPI = "https://nilavan-email.vercel.app/send-email";
+  
+    try {
+      const response = await fetch(sendGridAPI, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Send formData directly
       });
-      setFormData({ name: '', email: '', phone: '', message: '' });
+  
+      if (response.ok) {
+        toast({
+          title: "Message Sent",
+          description: "We'll get back to you as soon as possible!",
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to send email");
+      }
+    } catch (error) {
+      toast({ title: "Error", description: error.message || "Something went wrong!" });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
-
+  
+  
   return (
     <motion.section
       ref={ref}
