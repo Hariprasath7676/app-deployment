@@ -29,6 +29,8 @@ const ContactSection = () => {
   
     const sendGridAPI = "https://nilavan-email.vercel.app/send-email";
     const token = process.env.BEARER_TOKEN;
+    console.log("Token:", token);
+
     try {
       const response = await fetch(sendGridAPI, {
         method: "POST",
