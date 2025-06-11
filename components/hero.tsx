@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 export default function Hero() {
   return (
-    <section className="relative h-[600px] md:h-[800px] w-full">
+    <section className="relative h-[600px] md:h-[800px] w-full ">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -27,7 +27,7 @@ export default function Hero() {
             }}
             className="text-3xl md:text-5xl lg:text-6xl font-playfair text-white mb-4 text-center sm:!leading-[78px] sm:tracking-wide"
           >
-            Find Your Dream Property in Coimbatore
+           The Links Preserve
           </motion.h1>
 
           <motion.p 
@@ -39,8 +39,7 @@ export default function Hero() {
             }}
             className="text-white text-sm md:text-lg mb-8 font-light text-center mt-6 max-w-3xl"
           >
-            Explore our handpicked selection of premium properties in the thriving real estate market of Coimbatore.
-            Nilavan Realtors is dedicated to the success of Coimbatore.
+           A serene, exclusive real estate enclave set amid coconut groves and across from the golf course—offering a lifestyle deeply connected to nature and the timeless game of golf.
           </motion.p>
 
           <motion.div

@@ -9,8 +9,8 @@ export async function POST(req: Request) {
     const { name, email, phone, message } = body;
 
     const msg = {
-      to: 'swetha@leadtap.ai', // Replace with your email
-      from: 'swetha@leadtap.ai', // Replace with your SendGrid verified sender
+      to: process.env.SENDGRID_TO_EMAIL!, // Replace with your email
+      from: process.env.SENDGRID_FROM_EMAIL!, // Replace with your SendGrid verified sender
       subject: 'New Contact Form Submission',
       text: `
         Name: ${name}
