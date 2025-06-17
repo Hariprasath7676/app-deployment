@@ -10,8 +10,19 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [activeSection, setActiveSection] = useState('hero')
 
   const scrollToSection = (sectionId: string) => {
+    if (sectionId === 'hero') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+      setIsMenuOpen(false)
+      setActiveSection('hero')
+      return
+    }
+
     const section = document.getElementById(sectionId)
     if (section) {
       const offset = 80 // Height of fixed header when scrolled
@@ -21,18 +32,46 @@ export default function Header() {
         behavior: 'smooth'
       })
       setIsMenuOpen(false)
+      setActiveSection(sectionId)
     }
   }
 
   useEffect(() => {
     const handleScroll = () => {
-      // Add a threshold to prevent tiny scroll fluctuations
-      const scrollThreshold = 5
       const currentScrollY = window.scrollY
+      const windowHeight = window.innerHeight
+      const documentHeight = document.documentElement.scrollHeight
 
-      if (Math.abs(currentScrollY - lastScrollY) > scrollThreshold) {
+      // Handle scroll position for header styling
+      if (Math.abs(currentScrollY - lastScrollY) > 5) {
         setIsScrolled(currentScrollY > 0)
         setLastScrollY(currentScrollY)
+      }
+
+      // Determine active section
+      if (currentScrollY < 100) {
+        setActiveSection('hero')
+        return
+      }
+
+      // Check each section's position
+      navigationItems.forEach(({ section }) => {
+        if (section === 'hero') return
+        
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          const offset = 100 // Adjust this value based on when you want the active state to trigger
+          
+          if (rect.top <= offset && rect.bottom > offset) {
+            setActiveSection(section)
+          }
+        }
+      })
+
+      // Handle bottom of page
+      if (currentScrollY + windowHeight >= documentHeight - 50) {
+        setActiveSection('contact-form')
       }
     }
 
@@ -53,6 +92,7 @@ export default function Header() {
   }, [lastScrollY])
 
   const navigationItems = [
+    { name: 'Home', section: 'hero' },
     { name: 'About Us', section: 'trusted-partner' },
     { name: 'Current Projects', section: 'current-projects' },
     { name: 'Contact Us', section: 'contact-form' }
@@ -71,7 +111,17 @@ export default function Header() {
       }}
     >
       <div className="container mx-auto flex items-center justify-between px-4 h-full">
-        <div className="flex items-center">
+        {/* Mobile Navigation Toggle */}
+        <button 
+          className="md:hidden transform-gpu"
+          onClick={() => setIsMenuOpen(!isMenuOpen)} 
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Logo - centered on mobile */}
+        <div className={`flex items-center ${!isScrolled ? 'md:ml-0' : ''} ${isScrolled ? 'md:ml-0' : ''} flex-grow md:flex-grow-0 justify-center md:justify-start`}>
           <Link href="/" className="flex items-center">
             <div className="relative transition-transform duration-300 ease-in-out transform-gpu">
               <Image
@@ -89,36 +139,41 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        {/* Desktop Navigation and Call Button */}
+        <div className="hidden md:flex items-center space-x-8">
           {navigationItems.map((item) => (
             <button
               key={item.name}
               onClick={() => scrollToSection(item.section)}
-              className="font-normal text-gray-700 hover:text-gray-900 transition-colors duration-300 ease-in-out"
+              className={`font-normal text-gray-700 hover:text-gray-900 transition-all duration-300 ease-in-out px-2 py-2 relative ${
+                activeSection === item.section ? 'text-gray-900' : ''
+              }`}
             >
               {item.name}
+              <div className={`absolute bottom-0 left-0 w-full h-0.5 bg-primary transition-all duration-300 ease-in-out ${
+                activeSection === item.section ? 'opacity-100' : 'opacity-0'
+              }`} />
             </button>
           ))}
-        </nav>
+          <Button 
+            onClick={() => scrollToSection('contact-form')}
+            className={`bg-primary transition-all duration-300 ease-in-out transform-gpu ml-6 ${
+              isScrolled ? 'scale-95' : 'scale-100'
+            }`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="#ffffff" strokeWidth="2"  className="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> CALL US
+          </Button>
+        </div>
 
+        {/* Mobile Call Button */}
         <Button 
           onClick={() => scrollToSection('contact-form')}
-          className={`bg-primary transition-all duration-300 ease-in-out transform-gpu ${
+          className={`md:hidden bg-primary transition-all duration-300 ease-in-out transform-gpu text-sm px-3 py-1.5 h-auto ${
             isScrolled ? 'scale-95' : 'scale-100'
           }`}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="#ffffff" strokeWidth="2"  className="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> CALL US
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="#ffffff" strokeWidth="2" className="lucide lucide-phone mr-1"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> CALL US
         </Button>
-
-        {/* Mobile Navigation Toggle */}
-        <button 
-          className="md:hidden transform-gpu"
-          onClick={() => setIsMenuOpen(!isMenuOpen)} 
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
 
       {/* Mobile Navigation Menu */}

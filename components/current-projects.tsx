@@ -48,7 +48,7 @@ export default function CurrentProjects() {
   ]
 
   return (
-    <section id="current-projects" className="py-16">
+    <section id="current-projects" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <motion.div 
           initial={{ opacity: 0 }}

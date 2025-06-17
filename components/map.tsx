@@ -1,7 +1,9 @@
+'use client';
 
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 function Map() {
-
     const fadeInVariants = {
       hidden: { opacity: 0 },
       visible: { 
@@ -10,20 +12,28 @@ function Map() {
       }
     }
       return (
-          <
-        >
-         
-          <div className=" overflow-hidden shadow-lg border border-gray-200">
-            <iframe 
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy" 
-              src="https://maps.google.com/maps?&amp;height=400&amp;hl=en&amp;q=malumichampatti&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-            ></iframe>
-          </div>
-        </>
+            <div className="bg-background pt-10">
+             <motion.h2
+             variants={fadeInVariants}
+             initial="hidden"
+             whileInView="visible"
+             viewport={{ once: true }}
+             className="text-3xl md:text-4xl font-medium font-playfair text-center text-text mb-12"
+           >
+             Our Location
+           </motion.h2>
+           <div className="max-w-7xl mx-auto px-4 pb-14 sm:px-6 lg:px-8">
+             <div className="relative w-full h-[520px] overflow-hidden ">
+              <Image
+                src="/images/map.jpg"
+                alt="Our location map"
+                fill
+                className="object-cover"
+                priority
+              />
+             </div>
+           </div>
+         </div>
       )}
   
       export default Map;
