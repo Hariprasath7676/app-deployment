@@ -11,21 +11,27 @@ import ContactSection from "@/components/contact-section"
 import Footer from "@/components/footer"
 import Map from "@/components/map"
 import Imagebox from "@/components/imagebox"
+import AvailablePlots from "@/components/available-plot"
+import LifestyleShowcase from "@/components/lifestyle-showcase"
+
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Header />
-      <Hero />
-      {/* <TrustedPartner /> */}
-      <About />
-      <Plot/>
-      <Imagebox/>
+      <Hero />      
+      <TrustedPartner />
+      <AvailablePlots />
+      <LifestyleShowcase />   
+      <Map/>         
+      {/* <About /> */}
+      {/* <Plot/> */}
+      {/* <Imagebox/> */}
       <WhyChooseUs />
       {/* <ClientReviews /> */}
       <CurrentProjects />
-      <Faq />
+      {/* <Faq /> */}
       <ContactSection />
-      <Map/>
+      
       <Footer />
     </main>
   )

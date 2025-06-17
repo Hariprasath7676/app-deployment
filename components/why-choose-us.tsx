@@ -33,14 +33,14 @@ const features = [
 
 export default function WhyChooseSection() {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-3xl md:text-4xl font-light font-playfair text-center text-text mb-16"
+          className="text-3xl md:text-4xl font-medium font-playfair text-center text-text mb-16"
         >
           Why Choose Nilavan Realtors for Your Real Estate Needs
         </motion.h2>
