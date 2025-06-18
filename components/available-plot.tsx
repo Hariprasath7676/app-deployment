@@ -35,20 +35,20 @@ const AvailablePlots: FC = () => {
     const rightColumn = plotsData.slice(midPoint);
     
     return (
-      <section className="py-16 bg-gray-100">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-gray-100" id="available-plots">
+        <div className="container mx-auto px-6 md:px-4">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-3xl md:text-4xl font-medium font-playfair text-center text-text mb-16"
+          className="text-3xl md:text-4xl font-semibold md:font-medium font-playfair text-center text-text mb-2 md:mb-16 px-3"
         >
-          See Life at The Links Preserve
+          Available Plots at The Links Preserve
         </motion.h2>
           {/* <h2 className="text-2xl md:text-3xl font-playfair font-semibold text-center mb-12">Available Plots at The Links Preserve</h2> */}
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2 h-[550px]">
+          <div className="bg-white shadow-sm overflow-hidden">
+            <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 h-[550px]">
               {/* Plot Table */}
               <div className="p-8 h-full overflow-y-auto">
                 <div className="flex h-full">
@@ -95,7 +95,7 @@ const AvailablePlots: FC = () => {
                     src="/images/available-plot-image.jpg"
                     alt="The Links Preserve Plot Layout"
                     fill
-                    className="object-cover object-top rounded-lg"
+                    className="object-cover object-top"
                     priority
                   />
                 </div>
@@ -104,17 +104,27 @@ const AvailablePlots: FC = () => {
           </div>
           {/* Mobile responsive table */}
           <div className="lg:hidden mt-8">
-            <div className="bg-white rounded-lg p-6 shadow-sm">
-              <h3 className="font-semibold mb-4 text-center">Plot Details</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="font-semibold text-gray-800">Plot No</div>
-                <div className="font-semibold text-gray-800">Plot Size</div>
+            <div className="bg-white p-6 shadow-sm">
+              {/* Plot Image for mobile */}
+              <div className="relative w-full h-[270px] mb-12">
+                <Image
+                  src="/images/available-plot-image.jpg"
+                  alt="The Links Preserve Plot Layout"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+              {/* <h3 className="font-semibold mb-4 text-center">Plot Details</h3> */}
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="font-bold text-gray-800 text-center font-playfair text-xl">Plot No</div>
+                <div className="font-bold text-gray-800 text-center font-playfair text-xl">Plot Size</div>
               </div>
               <div className="space-y-2 mt-4">
                 {plotsData.map((plot, index) => (
                   <div key={index} className="grid grid-cols-2 gap-4 py-2">
-                    <div className="text-gray-700">{plot.plotNo}</div>
-                    <div className="text-gray-700">{plot.size}</div>
+                    <div className="text-center text-[#141414] text-lg">{plot.plotNo}</div>
+                    <div className="text-center text-[#141414] text-lg">{plot.size}</div>
                   </div>
                 ))}
               </div>

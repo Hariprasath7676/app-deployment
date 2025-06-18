@@ -40,9 +40,9 @@ export default function WhyChooseSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-3xl md:text-4xl font-medium font-playfair text-center text-text mb-16"
+          className="text-3xl md:text-4xl font-medium font-playfair text-center text-text mb-16 px-3"
         >
-          Why Choose Nilavan Realtors for Your Real Estate Needs
+          Why Choose Nilavan Realtors for Your <br className="md:block hidden" />Real Estate Needs
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
