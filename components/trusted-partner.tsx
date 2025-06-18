@@ -40,10 +40,22 @@ export default function TrustedPartner() {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="/projects"
+                href="#available-plots"
                 className="inline-flex items-center gap-2 bg-primary py-2 md:py-3 sm:tracking-wide text-white group transition-all duration-300 hover:bg-primary/90 px-6 md:px-9 text-sm md:text-base"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const section = document.getElementById('available-plots');
+                  if (section) {
+                    const offset = 80; // Height of fixed header when scrolled
+                    const sectionTop = section.offsetTop - offset;
+                    window.scrollTo({
+                      top: sectionTop,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
               >
-                <span className="font-light">LEARN MORE</span>
+                <span className="font-light">GET IN TOUCH</span>
                 {/* <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" /> */}
               </motion.a>
             </motion.div>

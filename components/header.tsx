@@ -93,7 +93,7 @@ export default function Header() {
 
   const navigationItems = [
     { name: 'Home', section: 'hero' },
-    { name: 'About Us', section: 'trusted-partner' },
+    { name: 'About Us', section: 'about' },
     { name: 'Current Projects', section: 'current-projects' },
     { name: 'Contact Us', section: 'contact-form' }
   ]

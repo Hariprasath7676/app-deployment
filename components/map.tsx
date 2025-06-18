@@ -18,12 +18,12 @@ function Map() {
              initial="hidden"
              whileInView="visible"
              viewport={{ once: true }}
-             className="text-3xl md:text-4xl font-medium font-playfair text-center text-text mb-12"
+             className="text-3xl md:text-4xl font-medium font-playfair text-center text-text md:mb-7 mb-12"
            >
-             Our Location
+             Location
            </motion.h2>
            <div className="max-w-7xl mx-auto px-4 pb-14 sm:px-6 lg:px-8">
-             <div className="relative w-full h-[520px] overflow-hidden ">
+             <div className="relative w-full md:h-[520px] h-[410px] overflow-hidden ">
               <Image
                 src="/images/map.jpg"
                 alt="Our location map"

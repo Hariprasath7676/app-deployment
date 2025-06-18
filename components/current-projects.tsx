@@ -58,12 +58,10 @@ export default function CurrentProjects() {
           className="text-center mb-12 max-w-3xl mx-auto"
         >
           <h2 className="text-3xl md:text-4xl font-playfair font-medium text-black mb-6">
-            Current Projects - Explore Our Ongoing Developments
+              Our Other Projects
           </h2>
           <p className="text-gray-700 mb-8 text-lg sm:!leading-[33px] sm:tracking-wid">
-            Discover our latest real estate ventures in Coimbatore offering premium living spaces, convenience, and
-            exceptional value. Explore our projects with state-of-the-art amenities that make them ideal for comfortable
-            living.
+              Discover our latest real estate projects in Coimbatore, offering premium plots, villas, farmhouses, and apartments in prime locations. Secure your dream property with clear titles and hassle-free transactions.
           </p>
         </motion.div>
 
@@ -113,7 +111,7 @@ export default function CurrentProjects() {
                     variant="outline" 
                     className="border-secondary text-black"
                   >
-                    ENQUIRE
+                    ENQUIRE NOW
                   </Button>
                 </motion.div>
               </div>

@@ -1,8 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useKeenSlider } from "keen-slider/react"
+import "keen-slider/keen-slider.min.css"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import { useEffect, useRef } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface LifestyleFeature {
   id: number
@@ -44,72 +46,97 @@ const features: LifestyleFeature[] = [
 ]
 
 export default function LifestyleShowcase() {
-  const [startIndex, setStartIndex] = useState(0)
+  const timer = useRef<NodeJS.Timeout | null>(null)
+
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+    {
+      loop: true,
+      slides: {
+        perView: 1.5, // Narrower for mobile
+        spacing: 16,
+        origin: "center",
+      },
+      breakpoints: {
+        "(min-width: 768px)": {
+          slides: { perView: 2, spacing: 20 },
+        },
+        "(min-width: 1024px)": {
+          slides: { perView: 4, spacing: 24 },
+        },
+      },
+      created: (slider) => {
+        clearInterval(timer.current!)
+        timer.current = setInterval(() => {
+          slider.next()
+        }, 2500)
+      },
+    },
+    []
+  )
 
   const handlePrev = () => {
-    setStartIndex((prev) => (prev - 1 + features.length) % features.length)
+    instanceRef.current?.prev()
   }
 
   const handleNext = () => {
-    setStartIndex((prev) => (prev + 1) % features.length)
+    instanceRef.current?.next()
   }
 
-  const visibleCards = Array.from({ length: 4 }).map(
-    (_, idx) => features[(startIndex + idx) % features.length]
-  )
+  useEffect(() => {
+    return () => {
+      if (timer.current) clearInterval(timer.current)
+    }
+  }, [])
 
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold font-playfair mb-4">
-          See Life at The Links Preserve
+      <div className="container mx-auto px-0 md:px-4 text-center">
+        <h2 className="text-3xl md:text-4xl font-semibold font-playfair mb-4 md:mb-8 px-10 md:px-4">
+          See Life at<br className="md:hidden" /> The Links Preserve
         </h2>
-        <p className="text-gray-600 max-w-3xl mx-auto mb-10 text-[17px] leading-relaxed">
+        <p className="text-gray-600 max-w-4xl mx-auto mb-10 text-[17px] leading-relaxed px-10 md:px-4">
           Take a closer look at the natural beauty, peaceful surroundings, and scenic views around The Links Preserve.
           From lush coconut groves to views of the golf course, explore what makes this place special.
         </p>
 
-        <div className="relative flex items-center justify-center">
-          {/* Prev Button */}
+        <div className="relative px-0 sm:px-6 lg:px-12">
+          {/* Arrows - Only show on md and above */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 z-10 p-2"
-            aria-label="Previous"
+            className="hidden md:block absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 text-[#0D4082] "
+            aria-label="Previous Slide"
           >
-            <svg viewBox="0 0 24 24" className="w-8 h-8 text-black" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
+            <ChevronLeft size={36} />
           </button>
 
-          {/* Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-7xl mx-auto px-6">
-            {visibleCards.map((feature) => (
-              <div key={feature.id} className="flex flex-col items-center">
-                <div className="relative w-full aspect-[4/5] rounded overflow-hidden shadow-md">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover"
-                  />
+          <button
+            onClick={handleNext}
+            className="hidden md:block absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 text-[#0D4082] "
+            aria-label="Next Slide"
+          >
+            <ChevronRight size={36} />
+          </button>
+
+          {/* Carousel */}
+          <div ref={sliderRef} className="keen-slider">
+            {features.map((feature) => (
+              <div key={feature.id} className="keen-slider__slide">
+                <div className="flex flex-col items-center p-2 w-full max-w-[280px] sm:max-w-none mx-auto">
+                  <div className="relative w-full aspect-[4/5] overflow-hidden shadow-lg">
+                    <Image
+                      src={feature.image}
+                      alt={feature.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="mt-4 text-base font-semibold text-[#141414] font-playfair text-center">
+                    {feature.title}
+                  </p>
                 </div>
-                <p className="mt-4 text-base font-semibold text-[#141414] font-playfair text-center">
-                  {feature.title}
-                </p>
               </div>
             ))}
           </div>
-
-          {/* Next Button */}
-          <button
-            onClick={handleNext}
-            className="absolute right-0 z-10 p-2"
-            aria-label="Next"
-          >
-            <svg viewBox="0 0 24 24" className="w-8 h-8 text-black" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 6l6 6-6 6" />
-            </svg>
-          </button>
         </div>
       </div>
     </section>

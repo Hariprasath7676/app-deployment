@@ -3,6 +3,18 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
 export default function Hero() {
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      const offset = 80 // Height of fixed header when scrolled
+      const sectionTop = section.offsetTop - offset
+      window.scrollTo({
+        top: sectionTop,
+        behavior: 'smooth'
+      })
+    }
+  }
+
   return (
     <section className="relative h-[700px] md:h-[800px] w-full">
       <motion.div
@@ -67,7 +79,10 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-primary text-white mt-2 md:mt-4">
+              <Button 
+                onClick={() => scrollToSection('contact-form')}
+                className="bg-primary text-white mt-2 md:mt-4"
+              >
                 GET IN TOUCH
               </Button>
             </motion.div>
