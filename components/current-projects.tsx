@@ -10,7 +10,7 @@ export default function CurrentProjects() {
       id: 1,
       title: "Green View Residency – Premium Plots",
       subtitle: "Premium Plots",
-      image: "/images/project1.png",
+      image: "/images/our-project-1.png",
       features: [
         { icon: <img src='/images/icon1.png' width={30}></img>, text: "Saravanampatti, Coimbatore" },
         { icon: <img src='/images/icon2.png' width={30}></img>, text: "1200 – 2400 Sq. Ft" },
@@ -21,9 +21,9 @@ export default function CurrentProjects() {
     },
     {
       id: 2,
-      title: "Nilavan Grand Villas – Luxury Villas in Vadavalli",
+      title: "Residency – Premium Residential Plots Vadavalli",
       subtitle: "Luxury Villas in Vadavalli",
-      image: "/images/project2.png",
+      image: "/images/our-project-2.png",
       features: [
         { icon: <img src='/images/icon1.png' width={30}></img>, text: "Vadavalli, Coimbatore" },
         { icon: <img src='/images/icon2.png' width={30}></img>, text: "1800 – 3000 Sq. Ft" },
@@ -36,7 +36,7 @@ export default function CurrentProjects() {
       id: 3,
       title: "Farm Bliss – Scenic Farmhouse Plots in Pollachi",
       subtitle: "Scenic Farmhouse Plots in Pollachi",
-      image: "/images/project3.png",
+      image: "/images/our-project-3.png",
       features: [
         { icon: <img src='/images/icon1.png' width={30}></img>, text: "Pollachi, Tamil Nadu" },
         { icon: <img src='/images/icon2.png' width={30}></img>, text: "½ Acre – 2 Acres" },
