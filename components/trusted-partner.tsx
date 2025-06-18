@@ -55,7 +55,7 @@ export default function TrustedPartner() {
                   }
                 }}
               >
-                <span className="font-light">GET IN TOUCH</span>
+                <span className="font-light">LEARN MORE</span>
                 {/* <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" /> */}
               </motion.a>
             </motion.div>
