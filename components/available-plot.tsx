@@ -92,7 +92,7 @@ const AvailablePlots: FC = () => {
               <div className="relative h-full p-8 flex items-center justify-center">
                 <div className="relative w-full h-[485px]">
                   <Image
-                    src="/images/available-plot-image.jpg"
+                    src="/images/available-plot-image.png"
                     alt="The Links Preserve Plot Layout"
                     fill
                     className="object-cover object-top"
@@ -108,7 +108,7 @@ const AvailablePlots: FC = () => {
               {/* Plot Image for mobile */}
               <div className="relative w-full h-[270px] mb-12">
                 <Image
-                  src="/images/available-plot-image.jpg"
+                  src="/images/available-plot-image.png"
                   alt="The Links Preserve Plot Layout"
                   fill
                   className="object-cover object-top"

@@ -23,14 +23,22 @@ function Map() {
              Location
            </motion.h2>
            <div className="max-w-7xl mx-auto px-4 pb-14 sm:px-6 lg:px-8">
-             <div className="relative w-full md:h-[520px] h-[410px] overflow-hidden ">
-              <Image
-                src="/images/map.jpg"
-                alt="Our location map"
-                fill
-                className="object-cover"
-                priority
-              />
+             <div className="relative w-full md:h-[520px] h-[480px] overflow-hidden">
+              <div className="mapouter h-full w-full">
+                <div className="gmap_canvas h-full w-full">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    id="gmap_canvas"
+                    src="https://maps.google.com/maps?q=10%C2%B054%2730.3%22N+77%C2%B001%2709.6%22E&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    frameBorder="0"
+                    scrolling="no"
+                  />
+                </div>
+              </div>
              </div>
            </div>
          </div>

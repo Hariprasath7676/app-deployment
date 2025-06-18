@@ -14,7 +14,7 @@ export default function TrustedPartner() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              src='/images/trusted partner.jpg'
+              src='/images/trusted-partner-color.png'
               alt="Elegant interior staircase"
               className="w-full max-w-[600px] h-[490px] md:h-[800px] object-cover"
             />
@@ -55,7 +55,7 @@ export default function TrustedPartner() {
                   }
                 }}
               >
-                <span className="font-light">GET IN TOUCH</span>
+                <span className="font-light">LEARN MORE</span>
                 {/* <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" /> */}
               </motion.a>
             </motion.div>

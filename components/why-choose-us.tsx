@@ -58,7 +58,7 @@ export default function WhyChooseSection() {
                 ease: "easeOut"
               }}
             >
-              <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:h-[400px]">
                 <CardContent className="p-8 flex flex-col items-center text-center max-w-lg m-auto">
                   <div className="mb-6 transition-transform duration-300 hover:scale-105">
                     {feature.icon}
