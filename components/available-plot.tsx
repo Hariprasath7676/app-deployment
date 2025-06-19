@@ -111,7 +111,7 @@ const AvailablePlots: FC = () => {
                   src="/images/available-plot-image.png"
                   alt="The Links Preserve Plot Layout"
                   fill
-                  className="object-cover object-top"
+                  className="object-contain object-top"
                   priority
                 />
               </div>
