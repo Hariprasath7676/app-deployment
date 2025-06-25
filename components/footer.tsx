@@ -35,9 +35,17 @@ export default function Footer() {
           <div className="md:ml-auto">
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
+            <li>
+                <button 
+                  onClick={() => scrollToSection('home')}
+                  className="text-gray-700 hover:text-blue-600 transition-colors"
+                >
+                  Home
+                </button>
+              </li>
               <li>
                 <button 
-                  onClick={() => scrollToSection('trusted-partner')}
+                  onClick={() => scrollToSection('about')}
                   className="text-gray-700 hover:text-blue-600 transition-colors"
                 >
                   About Us
@@ -51,20 +59,13 @@ export default function Footer() {
                   Current Projects
                 </button>
               </li>
-              <li>
-                <button 
-                  onClick={() => scrollToSection('faq')}
-                  className="text-gray-700 hover:text-blue-600 transition-colors"
-                >
-                  FAQ
-                </button>
-              </li>
+             
               <li>
                 <button 
                   onClick={() => scrollToSection('contact-form')}
                   className="text-gray-700 hover:text-blue-600 transition-colors"
                 >
-                  Contact
+                  Contact Us
                 </button>
               </li>
             </ul>
