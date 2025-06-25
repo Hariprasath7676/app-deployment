@@ -24,7 +24,12 @@ export const metadata: Metadata = {
   title: "Nilavan Realtors - Find Your Dream Property in Coimbatore",
   description:
     "Discover premium residential and commercial properties in Coimbatore with Nilavan Realtors, your trusted partner in real estate.",
-  generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
 }
 
 export default function RootLayout({
