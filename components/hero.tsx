@@ -16,7 +16,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative h-[700px] md:h-[800px] w-full">
+    <section id="home" className="relative h-[700px] md:h-[800px] w-full">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
