@@ -28,7 +28,7 @@ export default function Home() {
       {/* <Imagebox/> */}
       <WhyChooseUs />
       {/* <ClientReviews /> */}
-      <CurrentProjects />
+      {/* <CurrentProjects /> */}
       {/* <Faq /> */}
       <ContactSection />
       
