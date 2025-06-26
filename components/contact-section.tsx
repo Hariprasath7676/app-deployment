@@ -94,7 +94,7 @@ export default function ContactSection() {
             <div className="space-y-6 pt-10">
               {[
                 { icon: "/images/mail.png", title: "Reach us anytime", text: "info@nilavanrealtors.com" },
-                { icon: "/images/call.png", title: "Call us for assistance", text: "+91 98765 43210" },
+                { icon: "/images/call.png", title: "Call us for assistance", text: "+91 96595 55555" },
                 { icon: "/images/location.png", title: "Nilavan Real Estate, Malumichampatti, Coimbatore, TN 641001", text: "Get Directions" }
               ].map((item, index) => (
                 <motion.div

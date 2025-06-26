@@ -8,17 +8,8 @@ export async function POST(req: Request) {
     const apiKey = process.env.MAILGUN_API_KEY;
     const domain = 'mg.leadtap.ai';
     const mailgunUrl = `https://api.eu.mailgun.net/v3/${domain}/messages`;
-
-    // Debug logging to check environment variables
-    console.log('API Key exists:', !!apiKey);
-    console.log('API Key length:', apiKey?.length);
-    console.log('Domain:', domain);
-    console.log('To email:', process.env.MAILGUN_TO_EMAIL || 'all-mail@leadtap.ai');
-    
-    // Additional debugging for API key format
-    console.log('API Key starts with:', apiKey?.substring(0, 10) + '...');
-    console.log('API Key ends with:', '...' + apiKey?.substring(apiKey.length - 4));
-
+    const toEmail = process.env.MAILGUN_TO_EMAIL || 'all-mail@leadtap.ai';
+   
     // Check if API key is missing
     if (!apiKey) {
       console.error('MAILGUN_API_KEY environment variable is not set');
@@ -27,10 +18,10 @@ export async function POST(req: Request) {
 
     const formData = new URLSearchParams();
     formData.append('from', `Nilavan Realtors <no-reply@leadtap.ai>`);
-    formData.append('to', process.env.MAILGUN_TO_EMAIL || 'swetha@leadtap.ai');
+    formData.append('to', toEmail);
     formData.append('subject', 'New Contact Form Submission');
     formData.append('text', `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`);
-   formData.append('html', `
+    formData.append('html', `
    <div style="background:#f5f5f5;padding:40px 0;width:100%;">
      <div style="max-width:420px;margin:0 auto;background:#fff;border-radius:24px;padding:40px 32px 32px 32px;text-align:center;font-family:sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
        <h2 style="margin:0 0 16px 0;font-size:24px;font-weight:700;letter-spacing:0.5px;">Nilavan Realtors</h2>
@@ -53,9 +44,7 @@ export async function POST(req: Request) {
 
     // Debug Authorization header
     const authHeader = 'Basic ' + Buffer.from(`api:${apiKey}`).toString('base64');
-    console.log('Authorization header format:', authHeader.substring(0, 20) + '...');
-    console.log('Request URL:', mailgunUrl);
-
+  
     const response = await fetch(mailgunUrl, {
       method: 'POST',
       headers: {
@@ -67,9 +56,7 @@ export async function POST(req: Request) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Mailgun full error response:', errorText);
-      console.error('Response status:', response.status);
-      console.error('Response headers:', Object.fromEntries(response.headers.entries()));
+    
 
       throw new Error(`Mailgun error: ${errorText}`);
     }

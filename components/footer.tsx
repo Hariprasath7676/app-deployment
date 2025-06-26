@@ -51,14 +51,14 @@ export default function Footer() {
                   About Us
                 </button>
               </li>
-              <li>
+              {/* <li>
                 <button 
                   onClick={() => scrollToSection('current-projects')}
                   className="text-gray-700 hover:text-blue-600 transition-colors"
                 >
                   Current Projects
                 </button>
-              </li>
+              </li> */}
              
               <li>
                 <button 

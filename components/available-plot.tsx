@@ -44,7 +44,7 @@ const AvailablePlots: FC = () => {
           transition={{ duration: 0.8 }}
           className="text-3xl md:text-4xl font-semibold md:font-medium font-playfair text-center text-text mb-2 md:mb-16 px-3"
         >
-          Available Plots at The Links Preserve
+           Plots for Sale at The Links Preserve
         </motion.h2>
           {/* <h2 className="text-2xl md:text-3xl font-playfair font-semibold text-center mb-12">Available Plots at The Links Preserve</h2> */}
           <div className="bg-white shadow-sm overflow-hidden">
