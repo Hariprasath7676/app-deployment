@@ -1,69 +1,62 @@
 import { NextResponse } from 'next/server';
+import sendgrid from '@sendgrid/mail';
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { name, email, phone, message } = body;
 
-    const apiKey = process.env.MAILGUN_API_KEY;
-    const domain = 'mg.leadtap.ai';
-    const mailgunUrl = `https://api.eu.mailgun.net/v3/${domain}/messages`;
-    const toEmail = process.env.MAILGUN_TO_EMAIL || 'all-mail@leadtap.ai';
-   
-    // Check if API key is missing
+    const apiKey = process.env.SENDGRID_API_KEY;
+    const toEmail = process.env.SENDGRID_TO_EMAIL;
+
     if (!apiKey) {
-      console.error('MAILGUN_API_KEY environment variable is not set');
-      return NextResponse.json({ error: 'Mailgun API key not configured' }, { status: 500 });
+      console.error('SENDGRID_API_KEY is not set');
+      return NextResponse.json({ error: 'SendGrid API key not configured' }, { status: 500 });
     }
 
-    const formData = new URLSearchParams();
-    formData.append('from', `Nilavan Realtors <no-reply@leadtap.ai>`);
-    formData.append('to', toEmail);
-    formData.append('subject', 'New Contact Form Submission');
-    formData.append('text', `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`);
-    formData.append('html', `
-   <div style="background:#f5f5f5;padding:40px 0;width:100%;">
-     <div style="max-width:420px;margin:0 auto;background:#fff;border-radius:24px;padding:40px 32px 32px 32px;text-align:center;font-family:sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-       <h2 style="margin:0 0 16px 0;font-size:24px;font-weight:700;letter-spacing:0.5px;">Nilavan Realtors</h2>
-       <hr style="border:none;border-top:1px solid #eee;margin:24px 0;" />
-       <div style="text-align:left;margin-bottom:24px;">
-         <p style="margin:0 0 16px 0;">Hey ${name || 'there'},</p>
-         <p style="margin:0 0 16px 0;">You have a new contact form submission. Here are the details:</p>
-         
-           <p<strong>Name:</strong> ${name}</p>
-           <p><strong>Email:</strong> ${email}</p>
-           <p><strong>Phone:</strong> ${phone}</p>
-           <p><strong>Message:</strong> ${message}</p>
-       
-       </div>
-      
-       <div style="font-size:13px;color:#888;">Thanks,<br/>Nilavan Realtors Team</div>
-     </div>
-   </div>
-   `) 
-
-    // Debug Authorization header
-    const authHeader = 'Basic ' + Buffer.from(`api:${apiKey}`).toString('base64');
-  
-    const response = await fetch(mailgunUrl, {
-      method: 'POST',
-      headers: {
-        'Authorization': authHeader,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: formData.toString(),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-    
-
-      throw new Error(`Mailgun error: ${errorText}`);
+    if (!toEmail) {
+      console.error('SENDGRID_TO_EMAIL is not set');
+      return NextResponse.json({ error: 'Recipient email not configured' }, { status: 500 });
     }
 
+    sendgrid.setApiKey(apiKey);
+
+    const msg = {
+      to: toEmail,
+      from: toEmail, // Must be a verified sender in SendGrid
+      subject: 'New Contact Form Submission',
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
+      html: `
+        <html>
+          <body style="background: #f6f6f7; padding: 40px 0;">
+            <div style="max-width: 480px; margin: 40px auto; background: #fff; border-radius: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); padding: 32px 32px 24px 32px; font-family: Arial, sans-serif;">
+              <div style="text-align: center; margin-bottom: 24px;">
+                <div style="font-size: 22px; font-weight: bold; letter-spacing: 1px; color: #222;">NILAVAN REALTORS</div>
+              </div>
+              <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
+              <div style="font-size: 16px; color: #222; margin-bottom: 24px;">
+                <p style="margin: 0 0 16px 0;">You have a new contact form submission:</p>
+                <p style="margin: 0 0 8px 0;"><strong>Name:</strong> ${name}</p>
+                <p style="margin: 0 0 8px 0;"><strong>Email:</strong> ${email}</p>
+                <p style="margin: 0 0 8px 0;"><strong>Phone:</strong> ${phone}</p>
+                <p style="margin: 0 0 8px 0;"><strong>Message:</strong> ${message}</p>
+              </div>
+            </div>
+          </body>
+        </html>
+      `,
+    };
+
+    await sendgrid.send(msg);
     return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('Full error:', error);
+  } catch (error: unknown) {
+    console.error('SendGrid Error:', error);
+    
+    if (error && typeof error === 'object' && 'response' in error) {
+      const sgError = error as { response?: { body?: unknown } };
+      console.error('SendGrid Response Body:', sgError.response?.body);
+    }
+    
     return NextResponse.json({ error: 'Error sending email' }, { status: 500 });
   }
 } 
